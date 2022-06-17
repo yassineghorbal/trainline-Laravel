@@ -91,19 +91,24 @@ class TripController extends Controller
     }
 
     //add a new ticket
-    public function addTicket(Request $request, Ticket $ticket)
+    public function addTicket(Request $request)
     {
         $formData = $request->validate([
             'trip_id' => 'required',
             'user_id' => 'required',
         ]);
 
-        // $formData['user_id'] = Auth::user()->id;
-        // dd($formData);
-
 
         DB::table('tickets')->insert($formData);
         DB::table('trips')->where('id', $formData['trip_id'])->decrement('seats', 1);
         return redirect('/')->with('message', 'Ticket added successfully!');
+    }
+
+    //cancel a ticket
+    public function cancel(Ticket $ticket, Request $request)
+    {
+        $ticket->delete();
+        DB::table('trips')->where('id', $ticket->trip_id)->increment('seats', 1);
+        return redirect('/tickets')->with('message', 'Ticket cancelled successfully!');
     }
 }

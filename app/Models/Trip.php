@@ -17,4 +17,9 @@ class Trip extends Model
         'price',
         'seats',
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trip;
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -81,8 +84,15 @@ class UserController extends Controller
     //show user tickets
     public function showTickets()
     {
-        $user = Auth::user();
+        $tickets = DB::table('tickets')
+            ->join('trips', 'tickets.trip_id', '=', 'trips.id')
+            ->join('users', 'tickets.user_id', '=', 'users.id')
+            ->select('tickets.*', 'trips.start_city', 'trips.end_city', 'trips.start_date', 'trips.end_date', 'trips.price', 'users.name')
+            ->where('users.id', '=', Auth::user()->id)
+            ->get();
 
-        return view('users.tickets', compact('user'));
+        return view('users.tickets', [
+            'tickets' => $tickets,
+        ]);
     }
 }

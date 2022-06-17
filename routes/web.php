@@ -53,7 +53,7 @@ Route::get('/register', UserController::class . '@showRegisterForm')->middleware
 Route::post('/users', UserController::class . '@register');
 
 //show login form
-Route::get('/login', UserController::class . '@login')->name('login');
+Route::get('/login', UserController::class . '@login')->name('login')->middleware('guest');
 
 //login a user
 Route::post('users/authenticate', UserController::class . '@authenticate');
@@ -66,3 +66,6 @@ Route::get('/tickets', UserController::class . '@showTickets')->middleware('auth
 
 //add a ticket for a user
 Route::post('/book', TripController::class . '@addTicket')->middleware('auth');
+
+//cancel a ticket for a user
+Route::delete('/tickets/{ticket}', TripController::class . '@cancel')->middleware('auth');
