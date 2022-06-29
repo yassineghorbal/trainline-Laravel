@@ -105,7 +105,7 @@ class TripController extends Controller
     }
 
     //cancel a ticket
-    public function cancel(Ticket $ticket, Request $request)
+    public function cancel(Ticket $ticket)
     {
         $ticket->delete();
         DB::table('trips')->where('id', $ticket->trip_id)->increment('seats', 1);
