@@ -37,7 +37,7 @@ Route::delete('/trips/{trip}', TripController::class . '@destroy');
 Route::get('/trips/search', TripController::class . '@search');
 
 //show single trip
-Route::get('/trips/{trip}', TripController::class . '@show');
+Route::get('/trips/{trip}', TripController::class . '@show')->middleware('auth');
 
 
 
