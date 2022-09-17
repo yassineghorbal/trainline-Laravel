@@ -13,7 +13,7 @@
         <form method="GET" action="trips/search">
             @csrf
             <div class="flex flex-col mb-10">
-                <label for="city" class="font-semibold mb-2">Look for a city</label>
+                <label for="city" class="font-semibold mb-2">Search for a city</label>
                 <input type="text" name="start_city" id="name" class="border border-gray-200 p-2 w-full"
                     required>
             </div>
