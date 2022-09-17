@@ -21,11 +21,9 @@ class TripController extends Controller
     //search for a trip
     public function search(Request $request)
     {
-        $search = $request->get('start_city', 'end_city');
-        $trips = Trip::where('start_city', 'like', '%' . $search . '%')->orWhere('end_city', 'like', '%' . $search . '%')
-            ->get();
+        $search = $request->get('start_city');
+        $trips = Trip::where('start_city', 'like', $search . '%')->get();
 
-        // dd($trips);
         return view('users.search', [
             'trips' => $trips,
         ]);

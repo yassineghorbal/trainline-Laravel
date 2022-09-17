@@ -46,7 +46,7 @@
             </div>
             <div class="mb-4">
                 <label for="seats" class="inline-block text-lg mb-2">Seats</label>
-                <input type="text" name="seats" class="border border-gray-200 rounded p-2 w-full"
+                <input type="number" name="seats" class="border border-gray-200 rounded p-2 w-full"
                     value="{{ $trip->seats }}">
                 @error('seats')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>

@@ -17,14 +17,11 @@
         <a href="/trips" class="text-2xl">Trainline</a>
         <ul class="flex space-x-6 mr-6 text-lg">
             <li>
-                <a href="/trips/create" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Create trip</a>
+                <a href="/trips/create"><i class="fa-solid fa-user-plus"></i> Create trip</a>
             </li>
         </ul>
     </nav>
     {{ $slot }}
-
-    {{-- flash message --}}
-    <x-flash-message />
 </body>
 
 </html>
