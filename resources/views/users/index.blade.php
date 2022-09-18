@@ -25,7 +25,6 @@
                 </button>
             </div>
         </form>
+        <p class="text-red-500">Available cities: Casablanca, Tanger.</p>
     </div>
-
-
 </x-layout>
