@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 public/
+ web: (cd /app && cp .env.example .env && php artisan key:generate && php artisan migrate) && ([ -e /app/storage ] && chmod -R ugo+w /app/storage); perl /assets/transform-config.pl /assets/nginx.template.conf /nginx.conf && echo "Server starting on port $PORT" && (php-fpm -y /assets/php-fpm.conf & nginx -c /nginx.conf)
